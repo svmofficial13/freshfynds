@@ -17,10 +17,7 @@ const year = new Date().getFullYear();
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>"
-    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -33,9 +30,13 @@ const year = new Date().getFullYear();
 
     <header class="site-header">
       <div class="wrap header-row">
-        <a class="wordmark" href="/">FreshFynds</a>
+        <a class="wordmark" href="/">
+          <img src="/favicon.svg" alt="" width="34" height="34" />
+          FreshFynds
+        </a>
         <nav aria-label="Main">
           <a href="/">Home</a>
+          <a href="/gardening/">Gardening</a>
           <a href="/about/">About</a>
         </nav>
       </div>
@@ -139,10 +140,15 @@ const year = new Date().getFullYear();
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
   .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: var(--font-head);
     font-weight: 800;
     font-size: 1.5rem;
@@ -150,7 +156,7 @@ const year = new Date().getFullYear();
     letter-spacing: -0.02em;
   }
   .site-header nav a {
-    margin-left: 1.25rem;
+    margin-left: 1rem;
     font-family: var(--font-head);
     font-weight: 600;
     text-decoration: none;

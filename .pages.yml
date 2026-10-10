@@ -1,0 +1,45 @@
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: gardening
+    label: Gardening articles
+    type: collection
+    path: src/content/gardening
+    filename: "{primary}.md"
+    view:
+      fields: [title, publishDate, draft]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Short description (shown in Google and on the Gardening page)
+        type: text
+        required: true
+      - name: publishDate
+        label: Publish date
+        type: date
+        required: true
+      - name: updatedDate
+        label: Updated date (only when you update an old article)
+        type: date
+      - name: heroImage
+        label: Main photo
+        type: image
+      - name: heroAlt
+        label: Main photo description (for people who can't see it)
+        type: string
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: draft
+        label: Draft (tick to keep it hidden from the live site)
+        type: boolean
+        default: true
+      - name: body
+        label: Article
+        type: rich-text
