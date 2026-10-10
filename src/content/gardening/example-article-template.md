@@ -5,7 +5,7 @@ publishDate: 2026-10-10
 updatedDate: 2026-10-10
 tags:
   - template
-draft: true
+draft: false
 ---
 This file is a template. Because `draft: true` is set above, it only shows
 when you preview the site on your computer (`npm run dev`), never on the
