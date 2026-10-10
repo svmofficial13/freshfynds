@@ -1,0 +1,19 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const email = "contact@freshfynds.com";
+---
+
+<Layout
+  title="Contact – FreshFynds"
+  description="How to reach FreshFynds."
+>
+  <h1>Contact</h1>
+  <p>
+    Have a gardening question, spotted a mistake, or want a topic covered?
+    Email <a href={`mailto:${email}`}>{email}</a>.
+  </p>
+  <p>
+    I read every message and usually reply within a few days. For plant
+    problems, a photo and your city help a lot.
+  </p>
+</Layout>

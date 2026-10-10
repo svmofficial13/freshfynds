@@ -1,0 +1,179 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const {
+  title,
+  description = "Practical gardening guides for Indian balconies and terraces.",
+} = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="wrap header-row">
+        <a class="wordmark" href="/">FreshFynds</a>
+        <nav aria-label="Main">
+          <a href="/">Home</a>
+          <a href="/about/">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="wrap">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p class="disclosure">
+          Some links on FreshFynds are affiliate links. If you buy through them,
+          we may earn a small commission at no extra cost to you.
+        </p>
+        <nav aria-label="Footer">
+          <a href="/about/">About</a>
+          <a href="/affiliate-disclosure/">Affiliate disclosure</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+        <p class="copy">© {year} FreshFynds</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --leaf: #24502f;
+    --leaf-soft: #e4ecdf;
+    --marigold: #e39b12;
+    --soil: #2b2622;
+    --stone: #5e625a;
+    --paper: #f8faf5;
+    --font-head: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Literata", Georgia, "Times New Roman", serif;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--soil);
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-head);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--leaf);
+  }
+
+  a {
+    color: var(--leaf);
+    text-underline-offset: 0.2em;
+  }
+
+  a:focus-visible {
+    outline: 3px solid var(--marigold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .wrap {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  .skip {
+    position: absolute;
+    left: -999px;
+  }
+  .skip:focus {
+    left: 1rem;
+    top: 1rem;
+    background: var(--paper);
+    padding: 0.5rem 1rem;
+  }
+
+  .site-header {
+    border-bottom: 1px solid var(--leaf-soft);
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .wordmark {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .site-header nav a {
+    margin-left: 1.25rem;
+    font-family: var(--font-head);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  main {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--leaf-soft);
+    padding: 2rem 0 3rem;
+    color: var(--stone);
+    font-size: 0.95rem;
+  }
+  .site-footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin: 1rem 0;
+  }
+  .copy {
+    margin: 0;
+  }
+</style>
