@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-leaf: #24502f;
+  --color-leaf-deep: #1a3b22;
+  --color-leaf-soft: #e4ecdf;
+  --color-marigold: #e39b12;
+  --color-soil: #2b2622;
+  --color-stone: #5e625a;
+  --color-paper: #f8faf5;
+
+  --font-head: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Literata", Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper text-soil font-body text-[1.0625rem] leading-relaxed antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-head text-leaf;
+  }
+  a:focus-visible,
+  button:focus-visible {
+    @apply outline-3 outline-offset-3 outline-marigold rounded-sm;
+  }
+}
+
+/* Gentle reveal as sections scroll into view (only where supported). */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 90%;
+    }
+  }
+}
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}

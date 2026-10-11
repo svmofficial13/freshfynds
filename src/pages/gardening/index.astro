@@ -7,48 +7,52 @@ const articles = (
 ).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 
 const fmt = (d: Date) =>
-  d.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+  d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
 ---
 
 <Layout
   title="Gardening guides – FreshFynds"
   description="Real-life gardening guides for Indian balconies and terraces: fruit plants, flowering plants, vegetables, pests and seasons."
+  prose={false}
+  wide
 >
-  <h1>Gardening</h1>
-  <p class="lead">
-    Real problems from my two terraces in Punjab, and the step-by-step fixes
-    that actually work in Indian weather. No viral hacks.
+  <p class="font-head text-sm font-semibold uppercase tracking-[0.14em] text-marigold">Guides</p>
+  <h1 class="mt-2 text-[clamp(2.4rem,6vw,3.5rem)] font-extrabold leading-tight tracking-tight">Gardening</h1>
+  <p class="mt-3 max-w-2xl text-lg text-stone">
+    Real problems from two terraces in Punjab, and the step-by-step fixes that
+    actually work in Indian weather.
   </p>
 
   {articles.length === 0 ? (
-    <p class="empty">The first guides are being written. Check back soon.</p>
+    <p class="mt-10 rounded-2xl border border-dashed border-leaf/30 p-8 text-stone">
+      The first guides are being written. Check back soon.
+    </p>
   ) : (
-    <ul class="list">
+    <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {articles.map((a) => (
-        <li>
-          <a href={`/gardening/${a.id}/`}>
-            {a.data.heroImage && (
-              <img src={a.data.heroImage} alt={a.data.heroAlt ?? ""} loading="lazy" />
+        <li class="reveal">
+          <a
+            href={`/gardening/${a.id}/`}
+            class="group flex h-full flex-col overflow-hidden rounded-2xl border border-leaf-soft bg-white no-underline shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg"
+          >
+            {a.data.heroImage ? (
+              <img src={a.data.heroImage} alt={a.data.heroAlt ?? ""} loading="lazy" class="aspect-[3/2] w-full object-cover" />
+            ) : (
+              <div class="aspect-[3/2] w-full bg-leaf-soft" aria-hidden="true"></div>
             )}
-            <h2>{a.data.title}{a.data.draft && <span class="draft"> (draft)</span>}</h2>
+            <div class="flex flex-1 flex-col p-5">
+              <h2 class="text-xl font-extrabold leading-snug tracking-tight group-hover:underline">
+                {a.data.title}
+                {a.data.draft && <span class="ml-1 text-sm text-marigold">(draft)</span>}
+              </h2>
+              <p class="mt-2 flex-1 text-[0.95rem] text-stone">{a.data.description}</p>
+              <time class="mt-4 text-sm text-stone" datetime={a.data.publishDate.toISOString()}>
+                {fmt(a.data.publishDate)}
+              </time>
+            </div>
           </a>
-          <p>{a.data.description}</p>
-          <time datetime={a.data.publishDate.toISOString()}>{fmt(a.data.publishDate)}</time>
         </li>
       ))}
     </ul>
   )}
 </Layout>
-
-<style>
-  .lead { max-width: 36rem; }
-  .empty { color: var(--stone); }
-  .list { list-style: none; padding: 0; margin: 2.5rem 0 0; }
-  .list li { padding: 1.5rem 0; border-top: 1px solid var(--leaf-soft); }
-  .list a { text-decoration: none; }
-  .list img { border-radius: 6px; margin-bottom: 0.75rem; }
-  .list h2 { font-size: 1.4rem; margin: 0 0 0.4rem; }
-  .list p { margin: 0 0 0.4rem; }
-  .list time { color: var(--stone); font-size: 0.9rem; }
-  .draft { color: var(--marigold); font-size: 0.9rem; }
-</style>

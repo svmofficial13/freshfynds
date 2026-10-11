@@ -1,111 +1,191 @@
 ---
+import fs from "node:fs";
 import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
 
-// Update this block at the start of every month.
+// ── Update this block at the start of every month ──────────────────────
 const month = {
   name: "October",
   region: "Sow now in the North Indian plains",
   vegetables: [
-    "Spinach (palak)",
-    "Fenugreek (methi)",
-    "Coriander (dhaniya)",
-    "Radish (mooli)",
-    "Carrot",
-    "Peas",
-    "Garlic",
-    "Mustard greens (sarson)",
+    "Spinach (palak)", "Fenugreek (methi)", "Coriander (dhaniya)", "Radish (mooli)",
+    "Carrot", "Peas", "Garlic", "Mustard greens (sarson)",
   ],
   flowers: ["Marigold (genda)", "Calendula", "Petunia", "Sweet pea"],
 };
+// ───────────────────────────────────────────────────────────────────────
+
+// Add your own terrace photo at public/images/hero.jpg and it appears automatically.
+const hasHeroPhoto = fs.existsSync("./public/images/hero.jpg");
+
+const latest = (
+  await getCollection("gardening", ({ data }) => import.meta.env.DEV || !data.draft)
+)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
+
+const myths = [
+  {
+    myth: "A spoon of Epsom salt gives bumper tomatoes.",
+    reality: "It only helps when the soil truly lacks magnesium. Too much can make other nutrients harder for the plant to absorb.",
+  },
+  {
+    myth: "Crushed eggshells fix black, rotting tomato bottoms.",
+    reality: "Eggshells break down very slowly. The usual cause is uneven watering, which stops calcium reaching the fruit.",
+  },
+  {
+    myth: "A 12-masi lemon fruits all year round.",
+    reality: "In North Indian weather most give fruit in flushes. One main crop a year in a pot is normal.",
+  },
+];
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
 ---
 
-<Layout title="FreshFynds – Gardening guides for Indian balconies and terraces">
-  <section class="intro">
-    <h1>Grow food and flowers in small spaces</h1>
-    <p>
-      Honest, India-specific guides for balcony and terrace gardeners: what to
-      sow each season, which grow bags and tools are worth buying, and how to
-      keep plants alive through our heat and monsoons.
-    </p>
+<Layout
+  title="FreshFynds – Real gardening fixes for Indian balconies and terraces"
+  prose={false}
+  wide
+>
+  <!-- Hero -->
+  <section class="grid items-center gap-10 md:grid-cols-[1.15fr_1fr]">
+    <div>
+      <p class="font-head text-sm font-semibold uppercase tracking-[0.14em] text-marigold">
+        From two terraces in Punjab
+      </p>
+      <h1 class="mt-3 text-[clamp(2.4rem,6vw,4rem)] font-extrabold leading-[1.02] tracking-tight">
+        Real fixes for Indian home gardens, not viral hacks.
+      </h1>
+      <p class="mt-5 max-w-xl text-lg text-stone">
+        Why lemons stay small, why plants refuse to flower, what to sow this
+        month. Honest, step-by-step guides from real plants, real failures and
+        what finally worked.
+      </p>
+      <div class="mt-7 flex flex-wrap gap-3 font-head font-semibold">
+        <a href="/gardening/" class="rounded-full bg-leaf px-6 py-3 text-paper no-underline transition hover:bg-leaf-deep">
+          Read the guides
+        </a>
+        <a href="#season" class="rounded-full border-2 border-leaf px-6 py-3 text-leaf no-underline transition hover:bg-leaf-soft">
+          What to sow in {month.name}
+        </a>
+      </div>
+    </div>
+
+    {hasHeroPhoto ? (
+      <img
+        src="/images/hero.jpg"
+        alt="Plants growing on the FreshFynds terrace in Punjab"
+        class="aspect-[4/5] w-full rounded-3xl object-cover shadow-xl md:aspect-[4/5]"
+      />
+    ) : (
+      <a href="#season" class="group block rounded-3xl bg-leaf p-8 text-paper no-underline shadow-xl">
+        <p class="font-head text-sm font-semibold uppercase tracking-[0.14em] text-leaf-soft">This month</p>
+        <p class="mt-2 font-head text-[clamp(3.5rem,10vw,5.5rem)] font-extrabold leading-none tracking-tighter text-marigold">
+          {month.name}
+        </p>
+        <p class="mt-4 text-leaf-soft">{month.region}</p>
+        <p class="mt-6 font-head font-semibold text-paper">
+          See the full sowing list <span aria-hidden="true" class="inline-block transition group-hover:translate-x-1">→</span>
+        </p>
+      </a>
+    )}
   </section>
 
-  <section class="season" aria-labelledby="season-heading">
-    <h2 id="season-heading" class="month">{month.name}</h2>
-    <p class="region">{month.region}</p>
-    <div class="lists">
+  <!-- Latest guides -->
+  <section class="reveal mt-24">
+    <div class="flex items-end justify-between gap-4">
+      <h2 class="text-3xl font-extrabold tracking-tight">Latest guides</h2>
+      <a href="/gardening/" class="font-head font-semibold text-leaf underline-offset-4 hover:underline">All guides →</a>
+    </div>
+
+    {latest.length === 0 ? (
+      <p class="mt-6 rounded-2xl border border-dashed border-leaf/30 p-8 text-stone">
+        The first guides are being written right now: why potted lemons stay
+        small, and why some plants refuse to flower. Check back very soon.
+      </p>
+    ) : (
+      <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {latest.map((a) => (
+          <li>
+            <a
+              href={`/gardening/${a.id}/`}
+              class="group flex h-full flex-col overflow-hidden rounded-2xl border border-leaf-soft bg-white no-underline shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg"
+            >
+              {a.data.heroImage ? (
+                <img src={a.data.heroImage} alt={a.data.heroAlt ?? ""} loading="lazy" class="aspect-[3/2] w-full object-cover" />
+              ) : (
+                <div class="aspect-[3/2] w-full bg-leaf-soft" aria-hidden="true"></div>
+              )}
+              <div class="flex flex-1 flex-col p-5">
+                <h3 class="text-xl font-extrabold leading-snug tracking-tight group-hover:underline">
+                  {a.data.title}
+                  {a.data.draft && <span class="ml-1 text-sm text-marigold">(draft)</span>}
+                </h3>
+                <p class="mt-2 flex-1 text-[0.95rem] text-stone">{a.data.description}</p>
+                <time class="mt-4 text-sm text-stone" datetime={a.data.publishDate.toISOString()}>
+                  {fmt(a.data.publishDate)}
+                </time>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+
+  <!-- Sowing this month -->
+  <section id="season" class="reveal mt-24 scroll-mt-24 rounded-3xl bg-leaf px-6 py-10 text-paper md:px-12">
+    <h2 class="text-[clamp(3.5rem,13vw,7rem)] font-extrabold leading-[0.9] tracking-tighter text-marigold">
+      {month.name}
+    </h2>
+    <p class="mt-3 text-lg text-leaf-soft">{month.region}</p>
+    <div class="mt-8 grid gap-8 sm:grid-cols-2">
       <div>
-        <h3>Vegetables and greens</h3>
-        <ul>{month.vegetables.map((v) => <li>{v}</li>)}</ul>
+        <h3 class="font-head text-lg font-semibold text-paper">Vegetables and greens</h3>
+        <ul class="mt-3 space-y-1.5">
+          {month.vegetables.map((v) => <li class="flex gap-2"><span class="text-marigold">•</span>{v}</li>)}
+        </ul>
       </div>
       <div>
-        <h3>Flowers</h3>
-        <ul>{month.flowers.map((f) => <li>{f}</li>)}</ul>
+        <h3 class="font-head text-lg font-semibold text-paper">Flowers</h3>
+        <ul class="mt-3 space-y-1.5">
+          {month.flowers.map((f) => <li class="flex gap-2"><span class="text-marigold">•</span>{f}</li>)}
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="coming">
-    <h2>Guides being written now</h2>
-    <ul>
-      <li>Best grow bags for terrace vegetable gardens</li>
-      <li>Potting mix for containers: what to buy and what to mix yourself</li>
-      <li>A beginner's winter vegetable plan for a small balcony</li>
-    </ul>
+  <!-- Myth vs reality -->
+  <section class="reveal mt-24">
+    <h2 class="text-3xl font-extrabold tracking-tight">Myth vs reality</h2>
+    <p class="mt-2 max-w-2xl text-stone">
+      Gardening has no one-step tricks. Here's what popular hacks get wrong.
+    </p>
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+      {myths.map((m) => (
+        <div class="rounded-2xl border border-leaf-soft bg-white p-6 shadow-sm">
+          <p class="font-head text-xs font-semibold uppercase tracking-[0.14em] text-stone">The hack</p>
+          <p class="mt-1 text-soil line-through decoration-marigold/70 decoration-2">{m.myth}</p>
+          <p class="mt-5 font-head text-xs font-semibold uppercase tracking-[0.14em] text-leaf">The reality</p>
+          <p class="mt-1 text-soil">{m.reality}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- About strip -->
+  <section class="reveal mt-24 grid items-center gap-6 rounded-3xl bg-leaf-soft p-8 md:grid-cols-[auto_1fr] md:p-12">
+    <img src="/favicon.svg" alt="" width="72" height="72" />
+    <div>
+      <h2 class="text-2xl font-extrabold tracking-tight">Who's behind FreshFynds?</h2>
+      <p class="mt-2 max-w-2xl">
+        A home gardener with two terraces in Punjab who followed the viral
+        advice, watched plants struggle, and started again with proper
+        agricultural science. Every guide comes from real plants, including the
+        failures.
+      </p>
+      <a href="/about/" class="mt-4 inline-block font-head font-semibold text-leaf underline-offset-4 hover:underline">Read the full story →</a>
+    </div>
   </section>
 </Layout>
-
-<style>
-  .intro h1 {
-    font-size: clamp(2.1rem, 6vw, 3rem);
-    margin: 0 0 1rem;
-    letter-spacing: -0.02em;
-  }
-  .intro p {
-    max-width: 36rem;
-    margin: 0;
-  }
-
-  .season {
-    margin: 3rem 0;
-    padding: 2rem 1.5rem 1.5rem;
-    background: var(--leaf);
-    color: var(--paper);
-    border-radius: 6px;
-  }
-  .month {
-    margin: 0;
-    font-size: clamp(3.5rem, 15vw, 7rem);
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    color: var(--marigold);
-  }
-  .region {
-    margin: 0.75rem 0 1.5rem;
-    font-size: 1.05rem;
-  }
-  .lists {
-    display: grid;
-    gap: 0.5rem 2rem;
-  }
-  @media (min-width: 560px) {
-    .lists {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  .season h3 {
-    color: var(--paper);
-    font-size: 1.1rem;
-    margin: 0 0 0.25rem;
-  }
-  .season ul {
-    margin: 0 0 1rem;
-    padding-left: 1.2rem;
-  }
-
-  .coming h2 {
-    font-size: 1.5rem;
-  }
-  .coming li {
-    margin-bottom: 0.35rem;
-  }
-</style>

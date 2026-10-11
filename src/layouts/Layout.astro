@@ -1,13 +1,29 @@
 ---
+import "../styles/global.css";
+
 interface Props {
   title: string;
   description?: string;
+  /** Wrap the page in article typography (true for text pages). */
+  prose?: boolean;
+  /** Use the full page width instead of a reading column. */
+  wide?: boolean;
 }
 const {
   title,
-  description = "Practical gardening guides for Indian balconies and terraces.",
+  description = "Real-life gardening guides for Indian balconies and terraces.",
+  prose = true,
+  wide = false,
 } = Astro.props;
 const year = new Date().getFullYear();
+const path = Astro.url.pathname;
+const nav = [
+  { href: "/", label: "Home" },
+  { href: "/gardening/", label: "Gardening" },
+  { href: "/about/", label: "About" },
+];
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
 ---
 
 <!doctype html>
@@ -17,169 +33,83 @@ const year = new Date().getFullYear();
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="FreshFynds" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body>
-    <a class="skip" href="#main">Skip to content</a>
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:bg-paper focus:px-4 focus:py-2"
+      >Skip to content</a
+    >
 
-    <header class="site-header">
-      <div class="wrap header-row">
-        <a class="wordmark" href="/">
-          <img src="/favicon.svg" alt="" width="34" height="34" />
+    <header class="sticky top-0 z-20 border-b border-leaf-soft bg-paper/90 backdrop-blur">
+      <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-3">
+        <a href="/" class="flex items-center gap-2 font-head text-2xl font-extrabold tracking-tight text-leaf no-underline">
+          <img src="/favicon.svg" alt="" width="36" height="36" />
           FreshFynds
         </a>
-        <nav aria-label="Main">
-          <a href="/">Home</a>
-          <a href="/gardening/">Gardening</a>
-          <a href="/about/">About</a>
+        <nav aria-label="Main" class="flex gap-1 font-head font-semibold">
+          {nav.map((item) => (
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              class:list={[
+                "rounded-full px-3 py-1.5 no-underline transition-colors",
+                isActive(item.href)
+                  ? "bg-leaf text-paper"
+                  : "text-leaf hover:bg-leaf-soft",
+              ]}
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
       </div>
     </header>
 
-    <main id="main" class="wrap">
+    <main
+      id="main"
+      class:list={[
+        "mx-auto w-full flex-1 px-5 pb-20 pt-10",
+        wide ? "max-w-6xl" : "max-w-3xl",
+        prose &&
+          "prose prose-lg prose-quoteless prose-headings:font-head prose-headings:text-leaf prose-headings:tracking-tight prose-a:text-leaf prose-a:underline-offset-4 prose-strong:text-soil prose-img:rounded-lg prose-blockquote:border-marigold prose-blockquote:not-italic text-soil",
+      ]}
+    >
       <slot />
     </main>
 
-    <footer class="site-footer">
-      <div class="wrap">
-        <p class="disclosure">
-          Some links on FreshFynds are affiliate links. If you buy through them,
-          we may earn a small commission at no extra cost to you.
-        </p>
-        <nav aria-label="Footer">
-          <a href="/about/">About</a>
-          <a href="/affiliate-disclosure/">Affiliate disclosure</a>
-          <a href="/privacy/">Privacy</a>
-          <a href="/contact/">Contact</a>
+    <footer class="bg-leaf-deep text-leaf-soft">
+      <div class="mx-auto grid max-w-6xl gap-8 px-5 py-12 md:grid-cols-[2fr_1fr]">
+        <div>
+          <a href="/" class="flex items-center gap-2 font-head text-xl font-extrabold text-paper no-underline">
+            <img src="/favicon.svg" alt="" width="30" height="30" />
+            FreshFynds
+          </a>
+          <p class="mt-3 max-w-md text-sm leading-relaxed">
+            Honest, real-life guides and finds for Indian homes. Some links are
+            affiliate links: if you buy through them, we may earn a small
+            commission at no extra cost to you.
+          </p>
+        </div>
+        <nav aria-label="Footer" class="flex flex-col gap-2 text-sm">
+          <a class="text-paper underline-offset-4 hover:underline" href="/about/">About</a>
+          <a class="text-paper underline-offset-4 hover:underline" href="/affiliate-disclosure/">Affiliate disclosure</a>
+          <a class="text-paper underline-offset-4 hover:underline" href="/privacy/">Privacy</a>
+          <a class="text-paper underline-offset-4 hover:underline" href="/contact/">Contact</a>
         </nav>
-        <p class="copy">© {year} FreshFynds</p>
       </div>
+      <p class="mx-auto max-w-6xl px-5 pb-8 text-xs text-leaf-soft/70">© {year} FreshFynds</p>
     </footer>
   </body>
 </html>
-
-<style is:global>
-  :root {
-    --leaf: #24502f;
-    --leaf-soft: #e4ecdf;
-    --marigold: #e39b12;
-    --soil: #2b2622;
-    --stone: #5e625a;
-    --paper: #f8faf5;
-    --font-head: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-    --font-body: "Literata", Georgia, "Times New Roman", serif;
-  }
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--soil);
-    font-family: var(--font-body);
-    font-size: 1.125rem;
-    line-height: 1.75;
-  }
-
-  h1,
-  h2,
-  h3 {
-    font-family: var(--font-head);
-    font-weight: 800;
-    line-height: 1.15;
-    color: var(--leaf);
-  }
-
-  a {
-    color: var(--leaf);
-    text-underline-offset: 0.2em;
-  }
-
-  a:focus-visible {
-    outline: 3px solid var(--marigold);
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .wrap {
-    max-width: 44rem;
-    margin: 0 auto;
-    padding: 0 1.25rem;
-  }
-
-  .skip {
-    position: absolute;
-    left: -999px;
-  }
-  .skip:focus {
-    left: 1rem;
-    top: 1rem;
-    background: var(--paper);
-    padding: 0.5rem 1rem;
-  }
-
-  .site-header {
-    border-bottom: 1px solid var(--leaf-soft);
-  }
-  .header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-  .wordmark {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-head);
-    font-weight: 800;
-    font-size: 1.5rem;
-    text-decoration: none;
-    letter-spacing: -0.02em;
-  }
-  .site-header nav a {
-    margin-left: 1rem;
-    font-family: var(--font-head);
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  main {
-    padding-top: 2rem;
-    padding-bottom: 4rem;
-  }
-
-  .site-footer {
-    border-top: 1px solid var(--leaf-soft);
-    padding: 2rem 0 3rem;
-    color: var(--stone);
-    font-size: 0.95rem;
-  }
-  .site-footer nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.25rem;
-    margin: 1rem 0;
-  }
-  .copy {
-    margin: 0;
-  }
-</style>
