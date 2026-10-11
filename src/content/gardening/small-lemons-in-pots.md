@@ -1,13 +1,20 @@
 ---
-title: "Why are my potted lemons so small? What I found on my 12-masi lemon"
-description: "Around 60 lemons, most barely bigger than a ₹2 coin. Here's what really keeps potted lemons small in Indian homes, and my season-by-season plan to fix it."
+title: Why are my potted lemons so small? What I found on my 12-masi lemon
+description: Around 60 lemons, most barely bigger than a ₹2 coin. Here's what
+  really keeps potted lemons small in Indian homes, and my season-by-season plan
+  to fix it.
 publishDate: 2026-10-11
-heroImage: "/images/gardening/lemon-fruit-vs-2-rupee-coin.jpg"
-heroAlt: "A small green lemon on the plant, about the same size as a ₹2 coin held next to it"
-tags: ["lemon", "citrus", "fruit plants", "pots"]
-draft: true
+updatedDate: 2026-10-11
+heroImage: /images/gardening/lemon-fruit-vs-2-rupee-coin.jpg
+heroAlt: A small green lemon on the plant, about the same size as a ₹2 coin held
+  next to it
+tags:
+  - lemon
+  - citrus
+  - fruit plants
+  - pots
+draft: false
 ---
-
 My 12-masi lemon plant looks like a success story. In its first year in a 16-inch pot it gave me around 60 lemons, and this year it's carrying 50–60 again. There's just one problem: almost every lemon is about the size of a ₹2 coin.
 
 If your potted lemon is doing the same, you've probably been told to add Epsom salt, sugar water or banana peels. I tried the internet's advice before. This time I looked properly at my own plant, and found that small lemons are rarely about one missing "magic" ingredient. They're the result of several things going wrong together.
@@ -16,8 +23,9 @@ If your potted lemon is doing the same, you've probably been told to add Epsom s
 
 ## My plant: the honest facts
 
+
 | Detail | My lemon plant |
-|---|---|
+| -------- | ------------------------------------------------------------------------------------ |
 | Type | Sold as "12-masi" (baramasi) lemon, from a nursery |
 | Age | Second year in my care |
 | Pot | 16-inch pot, heavy garden-type soil |
@@ -26,6 +34,7 @@ If your potted lemon is doing the same, you've probably been told to add Epsom s
 | Feeding | Urea once, about 10 months ago. Vermicompost once, about 2 months ago. Nothing else. |
 | Fruit | 50–60 lemons, mostly in September–October; only 1–2 the rest of the year |
 | Size | Round, roughly 2.5–3 cm across, about the size of a ₹2 coin |
+
 
 ![My 12-masi lemon plant in its 16-inch pot, covered in small green fruit](/images/gardening/lemon-plant-16-inch-pot.jpg)
 
@@ -81,13 +90,15 @@ Interestingly, my plant is forming new buds right now in October (look closely b
 
 I'm changing one thing at a time and recording it, so next year I'll know exactly what worked.
 
+
 | When | What I'm doing |
-|---|---|
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **October–November** | Let the current fruit finish. Water deeply when the top 2 inches are dry, until water drains out. Add a layer of mulch to keep moisture even. No heavy nitrogen (like urea) going into winter. |
 | **December–January** | Rest period. Water less, no feeding. |
 | **February–March** | The main fix. Move the plant to a bigger pot (20–24 inch) with a loose, well-draining mix (good soil, compost, and something coarse like sand or cocopeat). Start a balanced fruit-plant or citrus fertiliser that includes potassium and micronutrients, following the dose on the pack. |
 | **Spring flowering** | Let the flowers set. When the fruits reach marble size, thin each cluster to one fruit and reduce the total load significantly on this young plant. |
 | **Monsoon** | Make sure the pot drains freely. Light, regular feeding. |
+
 
 ## I'll update this article with results
 
