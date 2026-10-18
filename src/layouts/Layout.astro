@@ -47,7 +47,7 @@ const isActive = (href: string) =>
     <meta property="og:image" content={imageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={imageUrl} />
-    <link rel="alternate" type="application/rss+xml" title="FreshFynds" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="FreshFynds" href={new URL("/rss.xml", Astro.site).href} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
