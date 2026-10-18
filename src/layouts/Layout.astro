@@ -8,13 +8,17 @@ interface Props {
   prose?: boolean;
   /** Use the full page width instead of a reading column. */
   wide?: boolean;
+  /** Image shown when the page is shared (Facebook, WhatsApp, Pinterest). */
+  image?: string;
 }
 const {
   title,
   description = "Real-life gardening guides for Indian balconies and terraces.",
   prose = true,
   wide = false,
+  image = "/images/og-default.png",
 } = Astro.props;
+const imageUrl = new URL(image, Astro.site).href;
 const year = new Date().getFullYear();
 const path = Astro.url.pathname;
 const nav = [
@@ -38,6 +42,12 @@ const isActive = (href: string) =>
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="FreshFynds" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={new URL(path, Astro.site)} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={imageUrl} />
+    <link rel="alternate" type="application/rss+xml" title="FreshFynds" href="/rss.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
