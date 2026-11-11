@@ -1,7 +1,7 @@
 ---
 title: "Same day, same soil: my palak came up thick, my dhaniya barely came up"
 description: "Palak and dhaniya, sown the same day in plain garden soil on a Punjab terrace. The palak came up thick, the dhaniya barely. My suspects and next test."
-publishDate: 2026-11-12
+publishDate: 2026-11-11
 heroImage: /images/gardening/palak-box-24-days.jpg
 heroAlt: Thick young palak plants growing in an old thermocol box on a Punjab terrace
 tags:
@@ -9,7 +9,7 @@ tags:
   - dhaniya
   - winter vegetables
   - garden diary
-draft: true
+draft: false
 ---
 
 On 18 October we sowed two of the easiest winter crops there are: palak (spinach) and dhaniya (coriander). Same terrace, same day, same soil, same watering.
@@ -24,7 +24,7 @@ Nothing fancy. Exactly this:
 
 - **Soil:** plain garden soil at sowing time. No compost, no vermicompost, no fertiliser. It's heavy and clay-like, with hard clods and small stones in it. (We added vermicompost later; more on that below.)
 - **Palak:** sown in a large old thermocol box.
-- **Dhaniya:** sown in two 12" x 12" grow bags.
+- **Dhaniya:** sown in two grow bags, 15" wide and 6" deep.
 - **Seeds:** last year's seeds, for both crops, straight from the packet. Not soaked. The dhaniya seeds were crushed to split them before sowing, as everyone advises.
 - **Watering:** once every 2–3 days, whenever the top of the soil started drying.
 
