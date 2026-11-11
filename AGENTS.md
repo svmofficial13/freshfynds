@@ -58,4 +58,11 @@ abstractions "for later", short comments explaining *why*.
 
 - Do not rewrite article text unless asked. Articles are written and
   approved by the owner.
-- No affiliate
+- No affiliate links for now: no direct programme is approved yet, and no
+  aggregators (Cuelinks, EarnKaro, etc.). When links are added later, the
+  page needs the affiliate disclosure, and links must never be raw, cloaked
+  or auto-redirecting.
+- Real experience only: never invent results, credentials or a backstory.
+  When a cause isn't proven, the article says so.
+- Privacy: never show the owner's face. Other people only with their
+  permission. No house numbers, street views or location data in photos.
