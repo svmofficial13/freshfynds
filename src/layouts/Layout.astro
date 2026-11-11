@@ -10,15 +10,29 @@ interface Props {
   wide?: boolean;
   /** Image shown when the page is shared (Facebook, WhatsApp, Pinterest). */
   image?: string;
+  /** Text description of the share image. Falls back to the page title. */
+  imageAlt?: string;
+  /** "article" for gardening articles, "website" for everything else. */
+  type?: "website" | "article";
 }
+
+// Used when a page has no image of its own. It is 1200 x 630 pixels.
+const DEFAULT_IMAGE = "/images/og-default.png";
+
 const {
   title,
   description = "Real-life gardening guides for Indian balconies and terraces.",
   prose = true,
   wide = false,
-  image = "/images/og-default.png",
+  image = DEFAULT_IMAGE,
+  imageAlt,
+  type = "website",
 } = Astro.props;
 const imageUrl = new URL(image, Astro.site).href;
+const imageAltText = imageAlt || title;
+// We only know the size of the default image, so only send width/height for it.
+// (WhatsApp and Facebook show the preview faster on first share when these are set.)
+const isDefaultImage = image === DEFAULT_IMAGE;
 const year = new Date().getFullYear();
 const path = Astro.url.pathname;
 const nav = [
@@ -42,11 +56,15 @@ const isActive = (href: string) =>
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="FreshFynds" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={new URL(path, Astro.site)} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={imageAltText} />
+    {isDefaultImage && <meta property="og:image:width" content="1200" />}
+    {isDefaultImage && <meta property="og:image:height" content="630" />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAltText} />
     <link rel="alternate" type="application/rss+xml" title="FreshFynds" href={new URL("/rss.xml", Astro.site).href} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
