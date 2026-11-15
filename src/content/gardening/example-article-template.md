@@ -27,3 +27,12 @@ Photos go in `public/images/gardening/` and are added like this:
 
 ![Small lemons on my 12-masi lemon plant](/images/gardening/example.jpg)
 
+## Myth vs reality box
+
+Write two paragraphs, each starting with a bold label. Press Enter between
+them (not Shift+Enter). They show as one card on the site:
+
+**Myth:** Epsom salt makes every plant flower more.
+
+**Reality:** It only helps when the soil is short of magnesium.
+

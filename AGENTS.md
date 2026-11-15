@@ -40,6 +40,12 @@ abstractions "for later", short comments explaining *why*.
 - Photos: `public/images/gardening/` (strip EXIF/location data).
 - Layout (header, footer, SEO and share tags): `src/layouts/Layout.astro`.
 - Theme colours and fonts: `src/styles/global.css`.
+- Myth vs reality card in articles: a `**Myth:**` paragraph followed by a
+  `**Reality:**` paragraph is wrapped at build time by
+  `src/plugins/myth-cards.mjs` (a Sätteri plugin, registered in
+  `astro.config.mjs`); styles are `.myth-card` in `global.css`. The
+  @astrojs/markdown-satteri version is pinned to the exact version Astro
+  requires; when upgrading Astro, update this pin to match.
 - Homepage monthly sowing block: top of `src/pages/index.astro`.
 - RSS feed: `src/pages/rss.xml.js`. Sitemap: `@astrojs/sitemap` in
   `astro.config.mjs`.

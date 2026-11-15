@@ -30,6 +30,29 @@
   }
 }
 
+/* "Myth vs reality" card inside articles, same look as the homepage cards.
+   The <div class="myth-card"> is added by src/plugins/myth-cards.mjs.
+   Kept outside @layer so it wins over the article (prose) styles. */
+.myth-card {
+  @apply my-8 rounded-2xl border border-leaf-soft bg-white p-5 shadow-sm sm:p-6;
+}
+.myth-card p {
+  @apply m-0;
+}
+.myth-card p + p {
+  @apply mt-5;
+}
+/* The bold "Myth:" / "Reality:" becomes a small label on its own line. */
+.myth-card strong {
+  @apply mb-1 block font-head text-xs font-semibold uppercase tracking-[0.14em];
+}
+.myth-card p:first-child strong {
+  @apply text-stone;
+}
+.myth-card p:last-child strong {
+  @apply text-leaf;
+}
+
 /* Gentle reveal as sections scroll into view (only where supported). */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
