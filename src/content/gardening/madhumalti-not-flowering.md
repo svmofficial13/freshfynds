@@ -3,7 +3,7 @@ title: "Madhumalti not flowering? What I found on my 10-year-old plant"
 description: "A 10-year-old madhumalti in a pot, two small flower bunches in a decade. The clues I found, the likely causes, and my plan for spring."
 publishDate: 2026-11-15
 heroImage: /images/gardening/madhumalti-old-plant-november.jpg
-heroAlt: "Ten-year-old madhumalti in a clay pot against a brick wall in November, with pale green leaves and many brown, curled leaves"
+heroAlt: "Ten-year-old madhumalti against a brick wall in November, with pale green leaves and many brown, curled leaves"
 tags: ["madhumalti", "flowering problems", "climbers", "garden diary"]
 draft: true
 ---
