@@ -70,5 +70,6 @@ abstractions "for later", short comments explaining *why*.
   or auto-redirecting.
 - Real experience only: never invent results, credentials or a backstory.
   When a cause isn't proven, the article says so.
+- End each article with a '## Sources' heading and a bullet list.
 - Privacy: never show the owner's face. Other people only with their
   permission. No house numbers, street views or location data in photos.
