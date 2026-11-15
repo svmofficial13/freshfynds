@@ -5,7 +5,7 @@ publishDate: 2026-11-15
 heroImage: /images/gardening/madhumalti-old-plant-november.jpg
 heroAlt: "Ten-year-old madhumalti against a brick wall in November, with pale green leaves and many brown, curled leaves"
 tags: ["madhumalti", "flowering problems", "climbers", "garden diary"]
-draft: true
+draft: false
 ---
 
 > **Quick answer:** My madhumalti (Rangoon creeper) has spent more than ten years in the same pot and the same garden soil, with nothing to climb on and almost no food apart from one dose of urea and a little vermicompost. I think those three things together keep it making leaves and thin shoots instead of flowers. The brown leaves falling right now are mostly the cold, not the plant dying.
