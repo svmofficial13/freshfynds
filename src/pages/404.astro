@@ -1,0 +1,47 @@
+---
+// "Page not found". Astro builds this as dist/404.html. Cloudflare Pages then
+// shows it, with a real 404 status, for any address that doesn't exist
+// (for example old /product/... links).
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+// The 3 newest published guides (same filter and order as the homepage).
+const latest = (
+  await getCollection("gardening", ({ data }) => import.meta.env.DEV || !data.draft)
+)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
+---
+
+<Layout
+  title="Page not found – FreshFynds"
+  description="This page doesn't exist. Try the FreshFynds home page or the gardening guides."
+  noindex
+>
+  <h1>Page not found</h1>
+  <p>
+    Sorry, nothing is growing at this address. The page may have moved, or the
+    link may be old.
+  </p>
+  <p>
+    If you followed an old link, that page no longer exists. FreshFynds is now
+    all about home gardening.
+  </p>
+
+  <h2>Where to next</h2>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/gardening/">All gardening guides</a></li>
+  </ul>
+
+  {latest.length > 0 && (
+    <>
+      <h2>Latest guides</h2>
+      <ul>
+        {latest.map((a) => (
+          <li><a href={`/gardening/${a.id}/`}>{a.data.title}</a></li>
+        ))}
+      </ul>
+    </>
+  )}
+</Layout>
