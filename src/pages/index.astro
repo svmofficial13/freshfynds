@@ -51,6 +51,36 @@ const myths = [
 
 const fmt = (d: Date) =>
   d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+
+// Structured data (JSON-LD) that tells Google the site's name, logo and social
+// profiles. Homepage only, as Google's "site names" guidance asks.
+// The WebSite url must match the homepage's canonical address exactly.
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://freshfynds.com/#website",
+      name: "FreshFynds",
+      alternateName: "Fresh Fynds",
+      url: "https://freshfynds.com/",
+      publisher: { "@id": "https://freshfynds.com/#organization" },
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://freshfynds.com/#organization",
+      name: "FreshFynds",
+      url: "https://freshfynds.com/",
+      logo: "https://freshfynds.com/images/logo-512.png", // 512x512, made from favicon.svg
+      sameAs: [
+        "https://www.instagram.com/fresh_fynds/",
+        "https://www.facebook.com/freshfynds",
+        "https://www.pinterest.com/freshfynds/",
+        "https://www.youtube.com/@freshfynds",
+      ],
+    },
+  ],
+};
 ---
 
 <Layout
@@ -58,6 +88,9 @@ const fmt = (d: Date) =>
   prose={false}
   wide
 >
+  {/* Goes into <head>. A "type" attribute tells Astro this is data, not a script to run. */}
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(siteSchema)} />
+
   <!-- Hero -->
   <section class="grid items-center gap-10 md:grid-cols-[1.15fr_1fr]">
     <div>
