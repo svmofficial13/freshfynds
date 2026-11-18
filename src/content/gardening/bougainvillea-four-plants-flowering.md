@@ -5,7 +5,7 @@ publishDate: 2026-11-18
 heroImage: /images/gardening/bougainvillea-yellow-bracts.jpg
 heroAlt: "Yellow-orange bougainvillea bracts on a bare branch on my terrace in November"
 tags: ["bougainvillea", "flowering problems", "climbers", "garden diary"]
-draft: true
+draft: false
 ---
 
 In mid-November my terraces are as colourful as they get all year. All four of my bougainvilleas are in colour right now. But they are not equal. The white one is covered from end to end. My two oldest plants, the magenta and the yellow, only have colour at the tips of bare, tangled branches.
