@@ -21,7 +21,7 @@ A quick note first: the bright "flowers" on a bougainvillea are not petals. They
 | Magenta | about 10 years | 6–7 hours | 2–3 flushes a year |
 | Yellow | 8–9 years | 6–7 hours | 2–3 flushes a year |
 | White | 7–8 years | 9+ hours (moved up 2–3 months ago) | 2–3 flushes a year, the heaviest |
-| Variegated, two-colour | 2 years | 6–7 hours | lighter |
+| Thimma (variegated, two-colour) | 2 years | 6–7 hours | lighter |
 
 All four get the same care, and it isn't much:
 
