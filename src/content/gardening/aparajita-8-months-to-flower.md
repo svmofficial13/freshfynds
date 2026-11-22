@@ -1,16 +1,16 @@
 ---
 title: "My aparajita took 8 months to flower: what held it back"
-description: "My two aparajita (butterfly pea) plants took 8+ months to flower in Punjab. The likely reasons, what I've ruled out, and my plan for winter and spring."
+description: "My two aparajita (butterfly pea) plants took about 8 months to flower in Punjab. The likely reasons, what I've ruled out, and my winter and spring plan."
 publishDate: 2026-11-22
 heroImage: /images/gardening/aparajita-pillar-plant-flowers.jpg
 heroAlt: "Aparajita (butterfly pea) vine climbing a grey pillar on my terrace, with blue flowers among small green leaves, in November"
 tags: ["aparajita", "flowering problems", "climbers", "garden diary"]
-draft: true
+draft: false
 ---
 
 Aparajita can be quick to flower. One forage factsheet says flowers can come 4–6 weeks after sowing, and in one trial the first flowers came 7–11 weeks after sowing. That's about two to three months at most.
 
-Mine took 8 to 10 months.
+Mine took about 8 months: somewhere between 7 and 9, depending on exactly when they were sown.
 
 Aparajita is *Clitoria ternatea*, the butterfly pea: a perennial climber with blue flowers. I sowed two plants early this year, and for most of the year they gave me nothing but leaves. Here is what I think held them back, what I've ruled out, and what I'm doing next.
 
@@ -57,12 +57,12 @@ I can't prove any of these. This is my honest ranking.
 
 **Myth:** Aparajita flowers all year.
 
-**Reality:** It can flower through the year only with enough soil moisture and no frost. In places with very cold winters and hot summers it is often grown as an annual. In Punjab, winter cold can cut it back.
+**Reality:** It can flower through the year only with enough soil moisture and no frost. In places with very cold winters and hot summers it is often grown as an annual. Punjab is exactly that kind of place, so winter cold can cut it back.
 
 ## What I'm doing now
 
 - **Letting the pods ripen and saving the seed**, the same way my seeds came from a relative. The pods split open when dry and fling the seed, so I'll pick them as they turn dry, before they split.
-- **Watering less.**
+- **Watering less:** only when the top few centimetres of soil feel dry (at most twice a week now).
 - **No feeding.**
 
 Saving seed matters more than usual this year, and the next section explains why.
